@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ director.first_name }} Details</title>
+</head>
+<body>
+    <h1>{{ director.first_name }} Details</h1>
+    <ul>
+        <li>First Name: {{ director.first_name }}</li>
+        <li>Last Name: {{ director.last_name }}</li>
+        <li>Date of Birth: {{ director.date_of_birth }}</li>
+    </ul>
+
+    <a href="{% url 'director-edit' id=director.director_id %}">Edit Director</a>
+    <br>
+    <br>
+    <form method="post" action="{% url 'director-delete' id=director.director_id %}">
+        {% csrf_token %}
+        <input type="submit" value="Delete Director">
+</body>
+</html>

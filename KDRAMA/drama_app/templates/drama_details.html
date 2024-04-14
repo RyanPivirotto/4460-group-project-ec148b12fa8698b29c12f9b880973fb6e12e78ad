@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ drama.title }} Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            text-align: center; 
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left; 
+        }
+        li {
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .button-container a:nth-child(2) button {
+            background-color: #ff0000; 
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ drama.title }} Details</h1>
+    <ul>
+        <li>Start Date: {{ drama.start_date }}</li>
+        <li>Director: {{ drama.director }}</li>
+        <li>Seasons: {{ drama.seasons }}</li>
+        <li>Characters:
+            <ul>
+                {% for character in drama.characters.all %}
+                    <li>{{ character.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li>Actors:
+            <ul>
+                {% for actor in drama.actors.all %}
+                    <li>{{ actor.first_name }} {{ actor.last_name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+
+    <div class="button-container">
+        <a href="{% url 'drama-edit' drama.id %}"><button>Edit Drama</button></a>
+        <a href="{% url 'drama-delete' drama.id %}"><button>Delete Drama</button></a>
+    
+    </div>
+
+    <br>
+    <br>
+    <a href="{% url 'drama-list' %}">Back to Drama List</a>
+    <br>
+    <a href="{% url 'homepage' %}">Back to Homepage</a>
+</body>
+</html>

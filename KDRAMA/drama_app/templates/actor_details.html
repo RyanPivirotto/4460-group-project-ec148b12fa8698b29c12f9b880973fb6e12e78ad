@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ actor.first_name }} Details</title>
+</head>
+<body>
+    <h1>{{ actor.first_name }} Details</h1>
+    <ul>
+        <li>First Name: {{ actor.first_name }}</li>
+        <li>Last Name: {{ actor.last_name }}</li>
+        <li>Date of Birth: {{ actor.date_of_birth }}</li>
+    </ul>
+
+    <a href="{% url 'actor-edit' id=actor.actor_id %}">Edit Actor</a>
+    <br>
+    <br>
+    <form method="post" action="{% url 'actor-delete' id=actor.actor_id %}">
+        {% csrf_token %}
+        <input type="submit" value="Delete Actor">
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ award.name }} Details</title>
+</head>
+<body>
+    <h1>{{ award.name }} Details</h1>
+    <ul>
+        <li>Name: {{ award.name }}</li>
+    </ul>
+
+    <a href="{% url 'award-edit' id=award.award_id %}">Edit Award</a>
+    <br>
+    <br>
+    <form method="post" action="{% url 'award-delete' id=award.award_id %}">
+        {% csrf_token %}
+        <input type="submit" value="Delete Award">
+</body>
+</html>
