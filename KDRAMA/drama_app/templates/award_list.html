@@ -58,11 +58,16 @@
     <h1>Award List</h1>
     <ul>
         {% for award in awards %}
-        <li>{{ award.name }}</li>
+        <li>
+            {{ award.name }}
+            <!-- Add the delete link for each award -->
+            <a href="{% url 'award-delete' award.id %}">Delete</a>
+        </li>
         {% endfor %}
     </ul>
     <a href="{% url 'award-add' %}"><button>Add New Award</button></a>
     <br>
+    <!-- Add a link to go back to the homepage -->
     <a href="{% url 'homepage' %}">Back to Homepage</a>
 </body>
 </html>

@@ -45,6 +45,10 @@
         <div class="login-form">
             {% if user.is_authenticated %}
                 <p>Login successful</p>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
             {% else %}
                 <form action="{% url 'homepage' %}" method="post">
                     {% csrf_token %}
@@ -60,7 +64,7 @@
             <a href="{% url 'actor-list' %}">Actor List</a>
             <a href="{% url 'director-list' %}">Director List</a>
             <a href="{% url 'drama-add' %}">Add New Drama</a>
-         <!-- <a href="{% url 'award-list' %}">Award List</a>> --> 
+            <a href="{% url 'award-list' %}">Award List</a> 
         </div>
     </div>
 </body>

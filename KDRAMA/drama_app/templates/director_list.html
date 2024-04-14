@@ -65,12 +65,15 @@
                 <li>DOB: {{ director.date_of_birth }}</li>
             </ul>
             <a href="{% url 'director-delete' id=director.id %}" class="button">Delete Director</a>
+            <a href="{% url 'director-update' id=director.id %}" class="button">UpdateDirector</a>
         </li>
         {% endfor %}
     </ul>
     
     <br>
     <a href="{% url 'homepage' %}">Back to Homepage</a>
+    <br>
+    <br>
     
 </body>
 </html>

@@ -3,7 +3,7 @@ from django.urls import reverse
 from .models import Award, Director, Drama, Actor, User
 from django.views import View
 from .forms import DirectorForm, DramaForm, ActorForm, AwardForm, LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .serializers import DramaSerializer 
 from rest_framework import generics
@@ -183,7 +183,7 @@ class UserDelete(View):
         return render(request, 'homepage.html')
     
 ##################
-# LOGIN##
+# LOGIN#LOGOUT#
 #################
 
 class LoginView(View):
@@ -201,6 +201,10 @@ class LoginView(View):
                 login(request, user)
                 return redirect('homepage')
         return render(request, 'homepage.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('homepage')
     
 #########
 # AWARD CRUDS#
@@ -240,11 +244,11 @@ class AwardUpdate(View):
     
 class AwardDelete(View):
     def get(self, request, id):
-        award = get_object_or_404(award, id=id)
+        award = get_object_or_404(Award, id=id)
         return render(request, 'award_delete.html', {'award': award})
 
     def post(self, request, id):        
-        award = get_object_or_404(award, id=id)        
+        award = get_object_or_404(Award, id=id)        
         award.delete()        
         return redirect('award-list')
     
